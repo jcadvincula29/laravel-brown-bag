@@ -25,7 +25,8 @@ class TodoRequest extends FormRequest
     {
         return [
             'task' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'completed_at' => 'sometimes|required'
         ];
     }
 }

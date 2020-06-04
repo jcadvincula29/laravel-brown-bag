@@ -51,7 +51,7 @@ class TodoController extends Controller
      */
     public function show(Todo $todo)
     {
-        //
+        return response()->json($todo);
     }
 
     /**

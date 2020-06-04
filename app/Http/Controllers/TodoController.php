@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
 use App\Models\Todo;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class TodoController extends Controller
@@ -68,6 +67,18 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $isDeleted = $todo->delete();
+
+        if (!$isDeleted) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to delete task'
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
+        return response()->json([
+            'status' =>'success',
+            'message'=> 'Task deleted successfully'
+        ]);
     }
 }

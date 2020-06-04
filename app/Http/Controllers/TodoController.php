@@ -38,8 +38,8 @@ class TodoController extends Controller
     public function store(TodoRequest $request)
     {
         $todoData = $request->validated();
-
         $todo = Todo::create($todoData);
+
         return response()->json($todo, Response::HTTP_CREATED);
     }
 

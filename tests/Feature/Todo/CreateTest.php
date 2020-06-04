@@ -23,6 +23,14 @@ class CreateTest extends TestCase
             ->toArray();
 
         $this->json('POST', '/api/todos', $request)
+            ->assertJsonFragment($request)
             ->assertStatus(Response::HTTP_CREATED);
+    }
+
+    /** @test */
+    public function a_user_cant_add_task_with_incomplete_fields()
+    {
+        $this->json('POST', '/api/todos', [])
+        ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
